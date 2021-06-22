@@ -11,12 +11,16 @@ import csv, re, operator
 app = Flask(__name__)
 
 person = {
-    'first_name': 'Nohossat',
-    'last_name' : 'TRAORE',
-    'address' : '9 rue Léon Giraud · PARIS · FRANCE',
+    # 'first_name': 'Nohossat',
+    'first_name': 'Siyu',
+    'last_name' : 'Huang',
+    # 'last_name' : 'TRAORE',
+    # 'address' : '9 rue Léon Giraud · PARIS · FRANCE',
+    'address' : 'Hubei Normal University',
     'job': 'Web developer',
     'tel': '0678282923',
-    'email': 'nohossat.tra@yahoo.com',
+    # 'email': 'nohossat.tra@yahoo.com',
+    'email': 'sasa07072021.@outlook.com',
     'description' : 'Suite à une expérience internationale en développement web et dans le domaine des arts, l’impact de l’intelligence artificielle dans nos vies me surprend de jour en jour. \n Aujourd’hui, je souhaite changer de cap et comprendre les secrets que recèlent nos données. J’aimerais mettre à profit ces découvertes au service des entreprises/associations à dimension sociale.',
     'social_media' : [
         {
@@ -36,7 +40,8 @@ person = {
             'icon' : 'fa-twitter'
         }
     ],
-    'img': 'img/img_nono.jpg',
+    # 'img': 'img/img_nono.jpg',
+    'img': 'img/123.jpg',
     'experiences' : [
         {
             'title' : 'Web Developer',
