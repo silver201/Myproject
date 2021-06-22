@@ -40,8 +40,8 @@ person = {
             'icon' : 'fa-twitter'
         }
     ],
-    'img': 'img/img_nono.jpg',
-    # 'img': 'img/123.jpg',
+    # 'img': 'img/img_nono.jpg',
+    'img': 'img/123.jpg',
     'experiences' : [
         {
             'title' : 'Web Developer',
