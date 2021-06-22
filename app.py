@@ -10,99 +10,101 @@ import csv, re, operator
 
 app = Flask(__name__)
 
-person = {
-    # 'first_name': 'Nohossat',
-    'first_name': 'Siyu',
-    'last_name' : 'Huang',
-    # 'last_name' : 'TRAORE',
-    # 'address' : '9 rue Léon Giraud · PARIS · FRANCE',
-    'address' : 'Hubei Normal University',
-    'job': 'Web developer',
-    'tel': '0678282923',
-    # 'email': 'nohossat.tra@yahoo.com',
-    'email': 'sasa07072021.@outlook.com',
-    'description' : 'Suite à une expérience internationale en développement web et dans le domaine des arts, l’impact de l’intelligence artificielle dans nos vies me surprend de jour en jour. \n Aujourd’hui, je souhaite changer de cap et comprendre les secrets que recèlent nos données. J’aimerais mettre à profit ces découvertes au service des entreprises/associations à dimension sociale.',
-    'social_media' : [
-        {
-            'link': 'https://www.facebook.com/nono',
-            'icon' : 'fa-facebook-f'
-        },
-        {
-            'link': 'https://github.com/nono',
-            'icon' : 'fa-github'
-        },
-        {
-            'link': 'linkedin.com/in/nono',
-            'icon' : 'fa-linkedin-in'
-        },
-        {
-            'link': 'https://twitter.com/nono',
-            'icon' : 'fa-twitter'
-        }
-    ],
-    # 'img': 'img/img_nono.jpg',
-    'img': 'img/123.jpg',
-    'experiences' : [
-        {
-            'title' : 'Web Developer',
-            'company': 'AZULIK',
-            'description' : 'Project manager and lead developer for several AZULIK websites.',
-            'timeframe' : 'July 2018 - November 2019'
-        },
-        {
-            'title' : 'Freelance Web Developer',
-            'company': 'Independant',
-            'description' : 'Create Wordpress websites for small and medium companies. ',
-            'timeframe' : 'February 2017 - Present'
-        },
-        {
-            'title' : 'Sharepoint Intern',
-            'company': 'ALTEN',
-            'description' : 'Help to manage a 600 Sharepoint sites platform (audit, migration to Sharepoint newer versions)',
-            'timeframe' : 'October 2015 - October 2016'
-        }
-    ],
-    'education' : [
-        {
-            'university': 'Paris Diderot',
-            'degree': 'Projets informatiques et Startégies d\'entreprise (PISE)',
-            'description' : 'Gestion de projets IT, Audit, Programmation',
-            'mention' : 'Bien',
-            'timeframe' : '2015 - 2016'
-        },
-        {
-            'university': 'Paris Dauphine',
-            'degree': 'Master en Management global',
-            'description' : 'Fonctions supports (Marketing, Finance, Ressources Humaines, Comptabilité)',
-            'mention' : 'Bien',
-            'timeframe' : '2015'
-        },
-        {
-            'university': 'Lycée Turgot - Paris Sorbonne',
-            'degree': 'CPGE Economie & Gestion',
-            'description' : 'Préparation au concours de l\'ENS Cachan, section Economie',
-            'mention' : 'N/A',
-            'timeframe' : '2010 - 2012'
-        }
-    ],
-    'programming_languages' : {
-        'HMTL' : ['fa-html5', '100'], 
-        'CSS' : ['fa-css3-alt', '100'], 
-        'SASS' : ['fa-sass', '90'], 
-        'JS' : ['fa-js-square', '90'],
-        'Wordpress' : ['fa-wordpress', '80'],
-        'Python': ['fa-python', '70'],
-        'Mongo DB' : ['fa-database', '60'],
-        'MySQL' : ['fa-database', '60'],
-        'NodeJS' : ['fa-node-js', '50']
-    },
-    'languages' : {'French' : 'Native', 'English' : 'Professional', 'Spanish' : 'Professional', 'Italian' : 'Limited Working Proficiency'},
-    'interests' : ['Dance', 'Travel', 'Languages']
-}
+# person = {
+#     'first_name': 'Nohossat',
+#     'first_name': '111',
+#     'last_name' : 'qq',
+#     'address' : '大学',
+#     'job': 'Web developer',
+#     'tel': '0678282923',
+#     'email': 'sasa07072021@outlook.com',
+#     'description' : 'Suite à une expérience internationale en développement web et dans le domaine des arts, l’impact de l’intelligence artificielle dans nos vies me surprend de jour en jour. \n Aujourd’hui, je souhaite changer de cap et comprendre les secrets que recèlent nos données. J’aimerais mettre à profit ces découvertes au service des entreprises/associations à dimension sociale.',
+#     'social_media' : [
+#         {
+#             'link': 'https://www.facebook.com/nono',
+#             'icon' : 'fa-facebook-f'
+#         },
+#         {
+#             'link': 'https://github.com/silver201',
+#             'icon' : 'fa-github'
+#         },
+#         {
+#             'link': 'linkedin.com/in/nono',
+#             'icon' : 'fa-linkedin-in'
+#         },
+#         {
+#             'link': 'https://twitter.com/nono',
+#             'icon' : 'fa-twitter'
+#         }
+#     ],
+#     'img': 'img/123.jpg',
+#     'experiences' : [
+#         {
+#             'title' : 'Web Developer',
+#             'company': 'AZULIK',
+#             'description' : 'Project manager and lead developer for several AZULIK websites.',
+#             'timeframe' : 'July 2018 - November 2019'
+#         },
+#         {
+#             'title' : 'Freelance Web Developer',
+#             'company': 'Independant',
+#             'description' : 'Create Wordpress websites for small and medium companies. ',
+#             'timeframe' : 'February 2017 - Present'
+#         },
+#         {
+#             'title' : 'Sharepoint Intern',
+#             'company': 'ALTEN',
+#             'description' : 'Help to manage a 600 Sharepoint sites platform (audit, migration to Sharepoint newer versions)',
+#             'timeframe' : 'October 2015 - October 2016'
+#         }
+#     ],
+#     'education' : [
+#         {
+#             # 'university': 'Paris Diderot',
+#             # 'degree': 'Projets informatiques et Startégies d\'entreprise (PISE)',
+#             # 'description' : 'Gestion de projets IT, Audit, Programmation',
+#             # 'mention' : 'Bien',
+#             # 'timeframe' : '2015 - 2016'
+#             'university': '湖北师范大学',
+#             'degree': 'Projets informatiques et Startégies d\'entreprise (PISE)',
+#             'description' : 'Gestion de projets IT, Audit, Programmation',
+#             'mention' : 'Bien',
+#             'timeframe' : '2018 - 2022'
+#         },
+#         {
+#             'university': 'Paris Dauphine',
+#             'degree': 'Master en Management global',
+#             'description' : 'Fonctions supports (Marketing, Finance, Ressources Humaines, Comptabilité)',
+#             'mention' : 'Bien',
+#             'timeframe' : '2015'
+#         },
+#         {
+#             'university': 'Lycée Turgot - Paris Sorbonne',
+#             'degree': 'CPGE Economie & Gestion',
+#             'description' : 'Préparation au concours de l\'ENS Cachan, section Economie',
+#             'mention' : 'N/A',
+#             'timeframe' : '2010 - 2012'
+#         }
+#     ],
+#     'programming_languages' : {
+#         'HMTL' : ['fa-html5', '100'], 
+#         'CSS' : ['fa-css3-alt', '100'], 
+#         'SASS' : ['fa-sass', '90'], 
+#         'JS' : ['fa-js-square', '90'],
+#         'Wordpress' : ['fa-wordpress', '80'],
+#         'Python': ['fa-python', '70'],
+#         'Mongo DB' : ['fa-database', '60'],
+#         'MySQL' : ['fa-database', '60'],
+#         'NodeJS' : ['fa-node-js', '50']
+#     },
+#     'languages' : {'French' : 'Native', 'English' : 'Professional', 'Spanish' : 'Professional', 'Italian' : 'Limited Working Proficiency'},
+#     'languages' : {'French' : 'Native', 'English' : 'Professional', 'Spanish' : 'Professional', 'Italian' : 'Limited Working Proficiency'},
+#     'interests' : ['Dance', 'Travel', 'Languages']
+# }
 
 @app.route('/')
-def cv(person=person):
-    return render_template('index.html', person=person)
+def cv():
+    return render_template('index.html')
 
 
 
@@ -111,9 +113,9 @@ def cv(person=person):
 def cb():
 	return gm(request.args.get('data'))
    
-@app.route('/chart')
-def index():
-	return render_template('chartsajax.html',  graphJSON=gm())
+# # @app.route('/chart')
+# # def index():
+# # 	return render_template('chartsajax.html',  graphJSON=gm())
 
 def gm(country='United Kingdom'):
 	df = pd.DataFrame(px.data.gapminder())
@@ -175,7 +177,7 @@ def main():
 
 	layout = {'title': '<b>意见挖掘</b>'}
 
-	return render_template('sentiment.html', graph_values=graph_values, layout=layout)
+	return render_template('index.html', graph_values=graph_values, layout=layout)
 
 
 if __name__ == '__main__':
