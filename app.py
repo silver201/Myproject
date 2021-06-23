@@ -25,7 +25,7 @@ person = {
     # 'social_media' : [
     'social_media' : [
         {
-            'link': '2528094118',
+            'link': '252809',
             'icon' : 'fa-facebook-f'
         },
         {
@@ -33,7 +33,7 @@ person = {
             'icon' : 'fa-github'
         },
         {
-            'link': 'sasa07072021@outlook.com',
+            'link': 'sasa0707@outlook.com',
             'icon' : 'fa-linkedin-in'
         }
     ],
