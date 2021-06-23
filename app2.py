@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 person = {
     'first_name': 'Nohossat',
-    'first_name': '111',
+    # 'first_name': '111',
     'last_name' : 'qq',
     'address' : '大学',
     'job': 'Web developer',
@@ -104,7 +104,7 @@ person = {
 
 @app.route('/')
 def cv(person=person):
-    return render_template('index.html', person=person)
+    return render_template('index3.html', person=person)
 
 
 

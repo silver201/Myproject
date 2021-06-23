@@ -17,7 +17,7 @@
 <!-- PAGE STUFF -->
 <div class="rela-block page">
     <div class="rela-block top-bar">
-        <div class="caps name"><div class="abs-center">Kyle J Shanks</div></div>
+        <div class="caps name"><div class="abs-center">{{ person.first_name}}{{person.last_name}}</div></div>
     </div>
     <div class="side-bar">
         <div class="mugshot">
@@ -25,35 +25,51 @@
                 <svg viewbox="0 0 80 80" class="rela-block logo-svg">
                     <path d="M 10 10 L 52 10 L 72 30 L 72 70 L 30 70 L 10 50 Z" stroke-width="2.5" fill="none"/>
                 </svg>
-                <p class="logo-text">kj</p>
+                <p class="logo-text">{{person.sx}}</p>
             </div>
         </div>
-        <p>123 My Place Drive</p>
-        <p>Astoria, New York 11105</p>
-        <p>1-800-CALLPLZ</p>
-        <p>emailsareforsquares@gmail.com</p><br>
-        <p class="rela-block social twitter">Twitter stuff</p>
-        <p class="rela-block social pinterest">Pinterest things</p>
-        <p class="rela-block social linked-in">Linked-in man</p>
+        <p>{{person.con}}</p>
+        <p>{{person.address}}</p>
+        <p>{{person.tel}}</p>
+        <p>{{person.email}}</p><br>
+        <p class="rela-block social twitter"><a href="{{ person.social_media[0].link }}" target="_blank">{{ person.social_media[0].link }}</a></p>
+        <p class="rela-block social pinterest"><a href="{{ person.social_media[1].link }}" target="_blank">{{ person.social_media[1].link }}</a></p>
+        <p class="rela-block social linked-in"><a href="{{ person.social_media[2].link }}" target="_blank">{{ person.social_media[2].link }}</a></p>
         <p class="rela-block caps side-header">Expertise</p>
-        <p class="rela-block list-thing">HTML</p>
-        <p class="rela-block list-thing">CSS (Stylus)</p>
-        <p class="rela-block list-thing">JavaScript & jQuery</p>
-        <p class="rela-block list-thing">Killer Taste</p>
+        {% for lang, details in person.programming_languages.items() %}
+        <p class="rela-block list-thing">{{ lang }}</p>
+        {% endfor %}
+        <!-- <p class="rela-block list-thing">HTML</p>
+        <p class="rela-block list-thing">CSS </p>
+        <p class="rela-block list-thing">JavaScript</p>
+        <p class="rela-block list-thing">Python</p> -->
         <p class="rela-block caps side-header">Education</p>
-        <p class="rela-block list-thing">Advanced potion making</p>
+        {% for diploma in person.education %}
+        <p class="rela-block list-thing">{{ diploma.university }}</p>
+        {% endfor %}
+       <!--  <p class="rela-block list-thing">Advanced potion making</p>
         <p class="rela-block list-thing">Degree in popping and locking</p>
         <p class="rela-block list-thing">Knitting game on point</p>
-        <p class="rela-block list-thing">Culinary af</p>
+        <p class="rela-block list-thing">Culinary af</p> -->
     </div>
     <div class="rela-block content-container">
         <h2 class="rela-block caps title">Jr Front-End Developer</h2>
         <div class="rela-block separator"></div>
         <div class="rela-block caps greyed">Profile</div>
-        <p class="long-margin">Retro DIY quinoa, mixtape williamsburg master cleanse bushwick tumblr chillwave dreamcatcher hella wolf paleo. Knausgaard semiotics truffaut cornhole hoodie, YOLO meggings gochujang tofu. Locavore ugh kale chips iPhone biodiesel typewriter freegan, kinfolk brooklyn kitsch man bun. Austin neutra etsy, lumbersexual paleo cornhole sriracha kinfolk meggings kickstarter. </p>
-        <div class="rela-block caps greyed">Experience</div>
+        <p class="long-margin">{{person.description}}</p>
+        <!-- <p class="long-margin">Retro DIY quinoa, mixtape williamsburg master cleanse bushwick tumblr chillwave dreamcatcher hella wolf paleo. Knausgaard semiotics truffaut cornhole hoodie, YOLO meggings gochujang tofu. Locavore ugh kale chips iPhone biodiesel typewriter freegan, kinfolk brooklyn kitsch man bun. Austin neutra etsy, lumbersexual paleo cornhole sriracha kinfolk meggings kickstarter. </p>
+ -->
 
-        <h3>Job #1</h3>
+
+        <div class="rela-block caps greyed">Experiences</div>
+
+        {% for experience in person.experiences %}
+        <h3>{{experience.title }}</h3>
+        <p class="light">{{experience.company}}</p>
+        <p class="justified">{{ experience.description }} </p>
+        <p class="light">{{experience.timeframe }}</p>
+        {% endfor %}
+        <!-- <h3>Job #1</h3>
         <p class="light">First job description</p>
         <p class="justified">Plaid gentrify put a bird on it, pickled XOXO farm-to-table irony raw denim messenger bag leggings. Hoodie PBR&B photo booth, vegan chillwave meh paleo freegan ramps. Letterpress shabby chic fixie semiotics. Meditation sriracha banjo pour-over. Gochujang pickled hashtag mixtape cred chambray. Freegan microdosing VHS, 90's bicycle rights aesthetic hella PBR&B. </p>
         
@@ -63,7 +79,7 @@
         
         <h3>Job #3</h3>
         <p class="light">Third Job Description</p>
-        <p class="justified">Next level roof party lo-fi fingerstache skateboard, kogi tumblr. Shabby chic put a bird on it chambray, 3 wolf moon swag beard brooklyn post-ironic taxidermy art party microdosing keffiyeh marfa. Put a bird on it 3 wolf moon cliche helvetica knausgaard. Mumblecore fingerstache lomo, artisan freegan keffiyeh paleo kinfolk kale chips street art blog flannel.</p>
+        <p class="justified">Next level roof party lo-fi fingerstache skateboard, kogi tumblr. Shabby chic put a bird on it chambray, 3 wolf moon swag beard brooklyn post-ironic taxidermy art party microdosing keffiyeh marfa. Put a bird on it 3 wolf moon cliche helvetica knausgaard. Mumblecore fingerstache lomo, artisan freegan keffiyeh paleo kinfolk kale chips street art blog flannel.</p> -->
     </div>
 </div>
 <!-- partial -->

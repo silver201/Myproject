@@ -1,6 +1,6 @@
-body {
+ body {
     margin: 0;
-    font-family: 'Share Tech', sans-serif;
+    font-family: &#39;Share Tech&#39;, sans-serif;
     font-size:16px;
     color: #505050;
     background:#eee;
@@ -45,7 +45,7 @@ h1, h2 {
     position:relative;
     display:flex;
     align-items:center;
-    font-family:'Share Tech Mono', monospace;
+    font-family:&#39;Share Tech Mono&#39;, monospace;
     line-height: 1em;
     word-spacing:-.1em;
     letter-spacing:-.05em;
@@ -93,7 +93,7 @@ p:last-child { margin-bottom:0 }
 }
 
 .subtext:before {
-    content:'';
+    content:&#39;&#39;;
     position:absolute;
     width:1px;
     background:#bbb;
@@ -129,7 +129,7 @@ main .hex {
 }
 
 .hex:before, .hex:after {
-    content:'';
+    content:&#39;&#39;;
     position:absolute;
     margin-top:-1px;
     margin-left:;
