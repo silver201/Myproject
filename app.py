@@ -108,14 +108,24 @@ def cv(person=person):
 def cb():
 	return gm(request.args.get('data'))
    
-# # @app.route('/chart')
-# # def index():
-# # 	return render_template('chartsajax.html',  graphJSON=gm())
+@app.route('/chart')
+def index():
+	return render_template('chartsajax.html',  graphJSON=gm())
 
-def gm(country='United Kingdom'):
-	df = pd.DataFrame(px.data.gapminder())
+# def gm(country='United Kingdom'):
+def gm(sex='Male'):
+	# df = pd.DataFrame(px.data.gapminder())
+	# df = pd.DataFrame(px.data.iris())
+	df = pd.DataFrame(px.data.tips())
+	  
 
-	fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
+	# fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
+	# fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
+	# fig = px.line(df[df['smoker']==smoker], x="sex", y="size")
+	# fig = px.scatter(df[df['smoker']==smoker], x="total_bill", y="sex")
+	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", color="size", facet_col="sex",
+           color_continuous_scale=px.colors.sequential.Viridis, 
+           render_mode="webgl")
 
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
