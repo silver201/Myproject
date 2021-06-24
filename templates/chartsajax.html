@@ -15,25 +15,189 @@
             });
         }
     </script>
-
+<script>
+        function cb1(selection) {
+            $.getJSON({
+                url: "/callback1", data: { 'data': selection }, success: function (result) {
+                    Plotly.newPlot('chart1', result, {});;
+                }
+            });
+        }
+    </script>
+<script>
+        function cb2(selection) {
+            $.getJSON({
+                url: "/callback2", data: { 'data': selection }, success: function (result) {
+                    Plotly.newPlot('chart11', result, {});;
+                }
+            });
+        }
+    </script>
+    <script>
+        function cb3(selection) {
+            $.getJSON({
+                url: "/callback3", data: { 'data': selection }, success: function (result) {
+                    Plotly.newPlot('chart12', result, {});;
+                }
+            });
+        }
+    </script>
 
 
 </head>
 
 <body style="font-family:arial, sans-serif">
-    <!-- <h1>1952-2007年的各国GDP可视化</h1> -->
-    <h1>餐馆订单数据，输入男女，查看总账单与消费的关系</h1>
-    <!-- <h2>输入国家如：India或China（大写字母开头）</h2> -->
-    <h2>输入男性还是女性，男（Male）女（Female）,默认男性</h2>
-    
+    <h1 align='center'>可视化神器Plotly_Express中内置数据集：餐馆的订单流水，简易数据分析</h1>
+    <h2 align='center'>餐馆数据订单包含字段：total_bill(总账单)、tip(小费)、sex(性别[男(Male)、女(Female)])、smoker(是否吸烟[是(Yes)、否(No)])、day(星期几)、time(早中餐哪一餐)、size(用餐人数)</h2>
+    <h3 align='center'>数据集中星期是"Thur", "Fri", "Sat", "Sun"，time是"Lunch", "Dinner"</h3>
+    <br><br>
+
+
+    <div>
+    <h3>(1)矩阵散点图，查看指标相关性</h3>
+    <div id="chart2" class="chart2"></div>
+    <h3>从相关性可以看到，每个数据的相关性都是挺强的</h3><br>
+    </div>
+
+
+    <div>
+    <h3>(2)餐馆订单流水的并行类别图。并行类别图：是并行坐标的分类模拟，使用它们可视化数据集中多组类别之间的关系</h3>
+    <div id="chart3" class="chart3"></div>
+    <h3>当鼠标移动到五列竖条时，可以得到各项的一个统计信息，比如可以知道Female有87，Male有157；不吸烟者有151，吸烟者有93；每当移动到不同的列时就能看到不同的总数信息。并且当鼠标移动到不同图上的每一根线上都可以得到连接五个属性的一个统计，比如说可以看到女性在周三三个人吃晚餐的数量有9。通过这样每一个数据我们就能对用餐各个属性之间的大致关系和数量又一个简单的了解</h3><br>
+    </div>
+
+    <div>
+    <h3>(3)查看男性和女性的有关总账单和小费的关系</h3>
+    <h3>输入男性还是女性，男（Male）女（Female）,默认男性</h3>
     <input type="text" id="fname" name="fname" onchange="cb(this.value)">
     <div id="chart" class="chart"></div>
+    <h3>可以看到男性总账单集中在10-20之间，小费集中在2-6之间，并且有一个大致趋势是男性总账单越高的小费可能给得越高</h3>
+    <h3>而女性总账单集中也在10-20之间，但小费集中在2-4之间</h3><br>
+    </div>
+
+    <div>
+    <h3>(4)通过多幅散点，查看总账单、小费、是否吸烟以及星期和时间的关系</h3>
+    <h3>默认选择是男性,男（Male）女（Female）</h3>
+     <input type="text" id="fname" name="fname" onchange="cb1(this.value)">
+    <div id="chart1" class="chart1"></div>
+    <h3>可以看到男性和女性在周四的晚餐(Dinner)和周六周日的中餐(Lunch)数据都甚少，几乎为空</h3>
+    <h3>而在已有的数据可以看到无论是吸烟者还是不吸烟者大部分人给小费的数目都会随着总账单的增长而增长。而有趣的是不论男女的吸烟者在周日晚餐时的小费数目是随总账单数目增加而减少的</h3><br>
+    </div>
+
+
+    <div>
+    <h3>(5)男女、是否吸烟以及总账单生成的条形图，看看他们之间的关系</h3>
+    
+    <div id="chart5" class="chart5"></div>
+    <h3>通过条形图可以得到，总体上男性总账单数比女性要多，并且不论男女不吸烟者的账单数都比吸烟者高，而且男性吸烟者要比女性多。</h3><br>
+    </div>
+
+    <div>
+    <h3>(6)再加上星期，看看男女、是否吸烟以及总账单生成的条形图是怎样的</h3>
+    <div id="chart6" class="chart6"></div>
+    <h3>可以看到，男性和女性在周天这天去餐馆吃饭是一周中最多的。从吸烟情况来看在周五和周六吸烟者的订单数目要比不吸烟者多</h3><br>
+    </div>
+
+    <div>
+    <h3>(7)是否吸烟关于账单和星期的箱形图</h3>
+    <div id="chart7" class="chart7"></div>
+    <h3></h3><br>
+    </div>
+
+    <h3>(8)小提琴图，同时在内部显示箱图，展示所有采样数据</h3>
+    <div id="chart8" class="chart8"></div>
+    </div>
+    
+    <h1 align='center'>可视化神器Plotly_Express中内置数据集：不同国家历年GDP收入与人均寿命，简易数据分析</h1>
+    <h2 align='center'>不同国家历年GDP收入与人均寿命包含字段：country(国家)、continent(洲)、year(年份)、lifeExp(平均寿命)、pop(人口数量)、gdpPrecap(GDP)、iso_alpha(国家简称)、iso_num(国家编号)</h2>
+    <div>
+    <h3>()动画地图:关于这么多年各个国家和平均寿命</h3>
+    <div id="chart9" class="chart9"></div>
+    <h3>在地图上可以看到各个国家的位置，并且鼠标移动到具体位置可以看到该国家简称和平均寿命，下面的一行年份可以随机选择，根据选择会生成不同的地图动画，这样我们就可以看到大致的各个国家年份的平均寿命情况。地图旋转方便看到每个国家</h3>
+    <h3>这幅图有趣的点在于当你拉动时间条是，你可以通过颜色的变化看到每个国家的平均寿命的变换，很显眼的是雄鸡中国，从1952的深紫色平均寿命40慢慢慢慢颜色变浅到07年的橙色，中国在慢慢崛起，人民生活也越来越好，平均寿命也越来越长。</h3><br>
+    </div>
+
+
+    <div>
+    <h3>()动画地图：关于这些年，各大洲各个国家人口的关系</h3>
+    <div id="chart4" class="chart4"></div>
+    <h3>这幅图也是如上面一样，当你拉动时间条时，你可以看到各个洲的小圆点慢慢变多，慢慢变大，说明人口在慢慢增长，科技的发展带来了更多的生机和活力。当你拉动时间条时仿佛看到了世界的变迁，非常有趣</h3><br>
+    </div>
+
+    <div>
+    <h3>()地理坐标线条图，设定展示立体地图</h3>
+    <div id="chart10" class="chart10"></div>
+    <h3>展示的是每个洲上面的每个国家的点连成的线，当鼠标移动到地图上的对应点时就会展示该洲名和国家名</h3><br>
+    </div>
+
+    <div>
+    <h3>()各个国家的平均寿命演变折线图，默认是United Kingdom</h3>
+    <input type="text" id="fname" name="fname" onchange="cb2(this.value)">
+    <div id="chart11" class="chart11"></div>
+    <h3>在这里输入不同的国家你可以看到从1952年到2007年平均寿命的一个演变，一般来说各个国家的平均寿命都是呈现增长的一个曲线。而当输入Chian时，会发现有一个明显的下降折线，这是苦难的中国遭罪的那些年，看到这样的曲线回忆起那样艰难的岁月是令人心痛的。</h3><br>
+    </div>
+
+    <div>
+    <h3>()各个国家的GDP演变折线图，默认是United Kingdom</h3>
+    <input type="text" id="fname" name="fname" onchange="cb3(this.value)">
+    <div id="chart12" class="chart12"></div>
+    <h3>在这里输入不同的国家你可以看到从1952年到2007年各国GPD的一个演变，一般来说各个国家的GDP都是呈现增长的一个曲线不论增长的速度如何。而当输入Chian时，也会发现跟上面的平均寿命一样有一个明显的下降折线，在哪要难熬的日子里报名才是最重要的所以GDP发展不起来</h3><br>
+    </div>
+
+   
+    
 </body>
 
 <script>
     d = {{ graphJSON | safe }};
     Plotly.newPlot('chart', d, {});
 </script>
-
-
+<script>
+    c = {{ graphJSON1 | safe }};
+    Plotly.newPlot('chart1', c, {});
+</script>
+<script>
+    a = {{ graphJSON2 | safe }};
+    Plotly.newPlot('chart2', a, {});
+</script>
+<script>
+    b = {{ graphJSON3 | safe }};
+    Plotly.newPlot('chart3', b, {});
+</script>
+<script>
+    e = {{ graphJSON4 | safe }};
+    Plotly.newPlot('chart4', e, {});
+</script>
+<script>
+    f = {{ graphJSON5 | safe }};
+    Plotly.newPlot('chart5', f, {});
+</script>
+<script>
+    g = {{ graphJSON6 | safe }};
+    Plotly.newPlot('chart6', g, {});
+</script>
+<script>
+    h = {{ graphJSON7 | safe }};
+    Plotly.newPlot('chart7', h, {});
+</script>
+<script>
+    i = {{ graphJSON8 | safe }};
+    Plotly.newPlot('chart8', i, {});
+</script>
+<script>
+    j = {{ graphJSON9 | safe }};
+    Plotly.newPlot('chart9', j, {});
+</script>
+<script>
+    k = {{ graphJSON10 | safe }};
+    Plotly.newPlot('chart10', k, {});
+</script>
+<script>
+    l = {{ graphJSON11 | safe }};
+    Plotly.newPlot('chart11', l, {});
+</script>
+<script>
+    m = {{ graphJSON12 | safe }};
+    Plotly.newPlot('chart12', m, {});
+</script>
 </html>
