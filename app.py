@@ -112,7 +112,8 @@ def cb3():
 def index():
 	return render_template('chartsajax.html', graphJSON=gm(),graphJSON1=am(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON4=gm3(),
 		graphJSON5=gm4(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
-		graphJSON9=gm8(),graphJSON10=gm9(),graphJSON11=gm10(),graphJSON12=gm11())
+		graphJSON9=gm8(),graphJSON10=gm9(),graphJSON11=gm10(),graphJSON12=gm11(),
+		graphJSON13=gm12(),graphJSON14=gm13(),graphJSON15=gm14(),graphJSON16=gm15(),graphJSON17=gm16())
 
 # def gm(country='United Kingdom'):
 def gm(sex='Male'):
@@ -222,62 +223,97 @@ def gm10(country='United Kingdom'):
 
 def gm11(country='United Kingdom'):
 	df = pd.DataFrame(px.data.gapminder())
-	fig =fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
+	fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
-@app.route('/senti')
-def main():
-	text = ""
-	values = {"positive": 0, "negative": 0, "neutral": 0}
+def gm12():
+	df = pd.DataFrame(px.data.gapminder())
+	fig=px.scatter(df.query("year==2007"), x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=60)
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
-	with open('ask_politics.csv', 'rt') as csvfile:
-		reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
-		for idx, row in enumerate(reader):
-			if idx > 0 and idx % 2000 == 0:
-				break
-			if  'text' in row:
-				nolinkstext = re.sub(r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''', '', row['text'], flags=re.MULTILINE)
-				text = nolinkstext
+def gm13():
+	df = pd.DataFrame(px.data.gapminder())
+	fig=px.scatter(df.query("year==2007"),x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=60, hover_name='country', facet_col='continent', log_x=True)
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
-			blob = TextBlob(text)
-			for sentence in blob.sentences:
-				sentiment_value = sentence.sentiment.polarity
-				if sentiment_value >= -0.1 and sentiment_value <= 0.1:
-					values['neutral'] += 1
-				elif sentiment_value < 0:
-					values['negative'] += 1
-				elif sentiment_value > 0:
-					values['positive'] += 1
+def gm14():
+	df = pd.DataFrame(px.data.gapminder())
+	fig=px.scatter(df, x='gdpPercap', y='lifeExp', size='pop', color='continent', hover_name='country', 
+           animation_frame='year', animation_group='country', log_x=True, range_x=[100,100000], range_y=[25, 90],
+           labels=dict(pop='Population', gdpPercap='GDP per Capita', lifeExp='Life Expectancy'))
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
-	values = sorted(values.items(), key=operator.itemgetter(1))
-	top_ten = list(reversed(values))
-	if len(top_ten) >= 11:
-		top_ten = top_ten[1:11]
-	else :
-		top_ten = top_ten[0:len(top_ten)]
+def gm15():
+	df = pd.DataFrame(px.data.gapminder())
+	fig=px.line(df, x="year", y="lifeExp", color="continent", 
+        line_group="country", hover_name="country",
+        line_shape="spline", render_mode="svg")
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
-	top_ten_list_vals = []
-	top_ten_list_labels = []
-	for language in top_ten:
-		top_ten_list_vals.append(language[1])
-		top_ten_list_labels.append(language[0])
+def gm16():
+	df = pd.DataFrame(px.data.gapminder())
+	fig=px.area(df, x="year", y="pop", color="continent", 
+        line_group="country")
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
-	graph_values = [{
-					'labels': top_ten_list_labels,
-					'values': top_ten_list_vals,
-					'type': 'pie',
-					'insidetextfont': {'color': '#FFFFFF',
-										'size': '14',
-										},
-					'textfont': {'color': '#FFFFFF',
-										'size': '14',
-								},
-					}]
+# @app.route('/senti')
+# def main():
+# 	text = ""
+# 	values = {"positive": 0, "negative": 0, "neutral": 0}
 
-	layout = {'title': '<b>意见挖掘</b>'}
+# 	with open('ask_politics.csv', 'rt') as csvfile:
+# 		reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+# 		for idx, row in enumerate(reader):
+# 			if idx > 0 and idx % 2000 == 0:
+# 				break
+# 			if  'text' in row:
+# 				nolinkstext = re.sub(r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''', '', row['text'], flags=re.MULTILINE)
+# 				text = nolinkstext
 
-	return render_template('index.html', graph_values=graph_values, layout=layout)
+# 			blob = TextBlob(text)
+# 			for sentence in blob.sentences:
+# 				sentiment_value = sentence.sentiment.polarity
+# 				if sentiment_value >= -0.1 and sentiment_value <= 0.1:
+# 					values['neutral'] += 1
+# 				elif sentiment_value < 0:
+# 					values['negative'] += 1
+# 				elif sentiment_value > 0:
+# 					values['positive'] += 1
+
+# 	values = sorted(values.items(), key=operator.itemgetter(1))
+# 	top_ten = list(reversed(values))
+# 	if len(top_ten) >= 11:
+# 		top_ten = top_ten[1:11]
+# 	else :
+# 		top_ten = top_ten[0:len(top_ten)]
+
+# 	top_ten_list_vals = []
+# 	top_ten_list_labels = []
+# 	for language in top_ten:
+# 		top_ten_list_vals.append(language[1])
+# 		top_ten_list_labels.append(language[0])
+
+# 	graph_values = [{
+# 					'labels': top_ten_list_labels,
+# 					'values': top_ten_list_vals,
+# 					'type': 'pie',
+# 					'insidetextfont': {'color': '#FFFFFF',
+# 										'size': '14',
+# 										},
+# 					'textfont': {'color': '#FFFFFF',
+# 										'size': '14',
+# 								},
+# 					}]
+
+# 	layout = {'title': '<b>意见挖掘</b>'}
+
+# 	return render_template('index.html', graph_values=graph_values, layout=layout)
 
 
 if __name__ == '__main__':

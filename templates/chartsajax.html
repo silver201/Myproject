@@ -101,17 +101,18 @@
     <div>
     <h3>(7)是否吸烟关于账单和星期的箱形图</h3>
     <div id="chart7" class="chart7"></div>
-    <h3></h3><br>
+    <h3>通过箱形图可以看到总体上星期天是人流量最大的一天，这一天的总账单数目最多</h3><br>
     </div>
 
-    <h3>(8)小提琴图，同时在内部显示箱图，展示所有采样数据</h3>
+    <h3>(8)关于男女性吸烟情况和小费情况所做的小提琴图，同时在内部显示箱图</h3>
     <div id="chart8" class="chart8"></div>
+    <h3>通过小提琴图可以看到总体上不吸烟者比吸烟者更多，并且大家的小费大多数都集中在2-6左右</h3><br>
     </div>
     
     <h1 align='center'>可视化神器Plotly_Express中内置数据集：不同国家历年GDP收入与人均寿命，简易数据分析</h1>
     <h2 align='center'>不同国家历年GDP收入与人均寿命包含字段：country(国家)、continent(洲)、year(年份)、lifeExp(平均寿命)、pop(人口数量)、gdpPrecap(GDP)、iso_alpha(国家简称)、iso_num(国家编号)</h2>
     <div>
-    <h3>()动画地图:关于这么多年各个国家和平均寿命</h3>
+    <h3>(9)动画地图:关于这么多年各个国家和平均寿命</h3>
     <div id="chart9" class="chart9"></div>
     <h3>在地图上可以看到各个国家的位置，并且鼠标移动到具体位置可以看到该国家简称和平均寿命，下面的一行年份可以随机选择，根据选择会生成不同的地图动画，这样我们就可以看到大致的各个国家年份的平均寿命情况。地图旋转方便看到每个国家</h3>
     <h3>这幅图有趣的点在于当你拉动时间条是，你可以通过颜色的变化看到每个国家的平均寿命的变换，很显眼的是雄鸡中国，从1952的深紫色平均寿命40慢慢慢慢颜色变浅到07年的橙色，中国在慢慢崛起，人民生活也越来越好，平均寿命也越来越长。</h3><br>
@@ -119,33 +120,66 @@
 
 
     <div>
-    <h3>()动画地图：关于这些年，各大洲各个国家人口的关系</h3>
+    <h3>(10)动画地图：关于这些年，各大洲各个国家人口的关系</h3>
     <div id="chart4" class="chart4"></div>
     <h3>这幅图也是如上面一样，当你拉动时间条时，你可以看到各个洲的小圆点慢慢变多，慢慢变大，说明人口在慢慢增长，科技的发展带来了更多的生机和活力。当你拉动时间条时仿佛看到了世界的变迁，非常有趣</h3><br>
     </div>
 
     <div>
-    <h3>()地理坐标线条图，设定展示立体地图</h3>
+    <h3>(11)地理坐标线条图，设定展示立体地图</h3>
     <div id="chart10" class="chart10"></div>
     <h3>展示的是每个洲上面的每个国家的点连成的线，当鼠标移动到地图上的对应点时就会展示该洲名和国家名</h3><br>
     </div>
 
     <div>
-    <h3>()各个国家的平均寿命演变折线图，默认是United Kingdom</h3>
+    <h3>(12)各个国家的平均寿命演变折线图，默认是United Kingdom</h3>
     <input type="text" id="fname" name="fname" onchange="cb2(this.value)">
     <div id="chart11" class="chart11"></div>
     <h3>在这里输入不同的国家你可以看到从1952年到2007年平均寿命的一个演变，一般来说各个国家的平均寿命都是呈现增长的一个曲线。而当输入Chian时，会发现有一个明显的下降折线，这是苦难的中国遭罪的那些年，看到这样的曲线回忆起那样艰难的岁月是令人心痛的。</h3><br>
     </div>
 
     <div>
-    <h3>()各个国家的GDP演变折线图，默认是United Kingdom</h3>
+    <h3>(13)各个国家的GDP演变折线图，默认是United Kingdom</h3>
     <input type="text" id="fname" name="fname" onchange="cb3(this.value)">
     <div id="chart12" class="chart12"></div>
     <h3>在这里输入不同的国家你可以看到从1952年到2007年各国GPD的一个演变，一般来说各个国家的GDP都是呈现增长的一个曲线不论增长的速度如何。而当输入Chian时，也会发现跟上面的平均寿命一样有一个明显的下降折线，在哪要难熬的日子里报名才是最重要的所以GDP发展不起来</h3><br>
     </div>
 
-   
-    
+   <div>
+    <h3>(14)气泡图：这里的每一点都是一个国家</h3>
+    <!-- <input type="text" id="fname" name="fname" onchange="cb3(this.value)" -->
+    <div id="chart13" class="chart13"></div>
+    <h3>这是2007这一年的数据，每一点都是一个国家，气泡的大小由国家人口数量决定，人口越多气泡越大。从图可以看到Africa（非洲）的平均寿命是低于其他几个洲的；(Asia)亚洲人口是最多的；GDP最高的出现在Europe(欧洲);普遍的欧洲国家平均寿命和GDP都高</h3><br>
+    </div>
+
+    <div>
+    <h3>(15)通过 facet_col =”continent“ 对上面的气泡图进行划分，x轴使用 对数（log_x）以便在我们在图表中看的更清晰</h3>
+    <!-- <input type="text" id="fname" name="fname" onchange="cb3(this.value)" -->
+    <div id="chart14" class="chart14"></div>
+    <h3>这是对上面的14个图的各州的具体分解，得到的结果也与上面是一样的</h3><br>
+    </div>
+
+    <div>
+    <h3>(16)上面两个图都是静态的只有2007年一年的数据，接下来添加时间条，动态展示各大洲各个国家平均寿命和GDP的演变</h3>
+    <!-- <input type="text" id="fname" name="fname" onchange="cb3(this.value)" -->
+    <div id="chart15" class="chart15"></div>
+    <h3>通过动态的动画可以知道，在1952年到2007年这些年间,所有的总体情况平均寿命和GDP都是在增长的，也可以很明显的通过动画看到亚洲的人口和GDP增长的速度之快</h3>
+    <br>
+    </div>
+
+    <div>
+    <h3>(17)各州平均寿命和时间的线条图，</h3>
+    <!-- <input type="text" id="fname" name="fname" onchange="cb3(this.value)" -->
+    <div id="chart16" class="chart16"></div>
+    <h3>通过线条图可以看到所有洲的平均寿命大体上都在增长，而非洲和亚洲有国家的线是突然向下在恢复增长的，都是因为落后要挨打，熬过了苦难的日子，大家生活水平提高平均寿命也就提高了</h3><br>
+    </div>
+
+    <div>
+    <h3>(18)各大洲人口数量和年份的堆积区域图</h3>
+    <!-- <input type="text" id="fname" name="fname" onchange="cb3(this.value)" -->
+    <div id="chart17" class="chart17"></div>
+    <h3>通过堆积图可以看到各大洲各个国家人口总数总体是不停增加的，由其实亚洲增加的数目最多</h3><br>
+    </div>
 </body>
 
 <script>
@@ -199,5 +233,25 @@
 <script>
     m = {{ graphJSON12 | safe }};
     Plotly.newPlot('chart12', m, {});
+</script>
+<script>
+    n = {{ graphJSON13 | safe }};
+    Plotly.newPlot('chart13', n, {});
+</script>
+<script>
+    o = {{ graphJSON14 | safe }};
+    Plotly.newPlot('chart14', o, {});
+</script>
+<script>
+    p = {{ graphJSON15 | safe }};
+    Plotly.newPlot('chart15', p, {});
+</script>
+<script>
+    q = {{ graphJSON16 | safe }};
+    Plotly.newPlot('chart16', q, {});
+</script>
+<script>
+    r = {{ graphJSON17 | safe }};
+    Plotly.newPlot('chart17', r, {});
 </script>
 </html>
