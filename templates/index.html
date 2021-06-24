@@ -28,14 +28,14 @@
                 <p class="logo-text">{{person.sx}}</p>
             </div>
         </div>
-        <p>{{person.con}}</p>
+       <!--  <p>{{person.con}}</p>
         <p>{{person.address}}</p>
         <p>{{person.tel}}</p>
-        <p>{{person.email}}</p><br>
+        <p>{{person.email}}</p><br> -->
         <p class="rela-block social twitter"><a href="{{ person.social_media[0].link }}" target="_blank">{{ person.social_media[0].link }}</a></p>
         <p class="rela-block social pinterest"><a href="{{ person.social_media[1].link }}" target="_blank">{{ person.social_media[1].link }}</a></p>
         <p class="rela-block social linked-in"><a href="{{ person.social_media[2].link }}" target="_blank">{{ person.social_media[2].link }}</a></p>
-        <p class="rela-block caps side-header">Expertise</p>
+        <p class="rela-block caps side-header">技能</p>
         {% for lang, details in person.programming_languages.items() %}
         <p class="rela-block list-thing">{{ lang }}</p>
         {% endfor %}
@@ -43,9 +43,12 @@
         <p class="rela-block list-thing">CSS </p>
         <p class="rela-block list-thing">JavaScript</p>
         <p class="rela-block list-thing">Python</p> -->
-        <p class="rela-block caps side-header">Education</p>
+        <p class="rela-block caps side-header">教育</p>
         {% for diploma in person.education %}
         <p class="rela-block list-thing">{{ diploma.university }}</p>
+        <p class="rela-block list-thing">{{ diploma.degree }}</p>
+        <p class="rela-block list-thing">{{ diploma.description }}</p>
+        <p class="rela-block list-thing">{{ diploma.timeframe }}</p>
         {% endfor %}
        <!--  <p class="rela-block list-thing">Advanced potion making</p>
         <p class="rela-block list-thing">Degree in popping and locking</p>
@@ -55,18 +58,19 @@
     <div class="rela-block content-container">
         <h2 class="rela-block caps title">Jr Front-End Developer</h2>
         <div class="rela-block separator"></div>
-        <div class="rela-block caps greyed">Profile</div>
+        <div class="rela-block caps greyed">个人简介</div>
         <p class="long-margin">{{person.description}}</p>
-        <p class="long-margin"><a href="{{url_for('index')}}">近期作品</a></p>
+        
         <!-- <p class="long-margin">Retro DIY quinoa, mixtape williamsburg master cleanse bushwick tumblr chillwave dreamcatcher hella wolf paleo. Knausgaard semiotics truffaut cornhole hoodie, YOLO meggings gochujang tofu. Locavore ugh kale chips iPhone biodiesel typewriter freegan, kinfolk brooklyn kitsch man bun. Austin neutra etsy, lumbersexual paleo cornhole sriracha kinfolk meggings kickstarter. </p>
  -->
+        <div class="rela-block caps greyed">近期作品</div>
+        <p class="long-margin"><a href="{{url_for('index')}}">近期作品</a></p>
 
-
-        <div class="rela-block caps greyed">Experiences</div>
+        <div class="rela-block caps greyed">项目经历</div>
 
         {% for experience in person.experiences %}
         <h3>{{experience.title }}</h3>
-        <p class="light">{{experience.company}}</p>
+        <!-- <p class="light">{{experience.company}}</p> -->
         <p class="justified">{{ experience.description }} </p>
         <p class="light">{{experience.timeframe }}</p>
         {% endfor %}
