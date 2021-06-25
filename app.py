@@ -110,7 +110,8 @@ def cb3():
 
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html', graphJSON=gm(),graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
+	return render_template('chartsajax.html', graphJSON=gm(),graphJSON1=am(),
+		graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
 		)
 
 @app.route('/chart1')
