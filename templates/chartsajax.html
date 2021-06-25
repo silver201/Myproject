@@ -17,6 +17,12 @@
     <br><br>
 
     <div>
+    <h3>(1)矩阵散点图，查看指标相关性</h3>
+    <div id="chart2" class="chart2"></div>
+    <h3>从相关性可以看到，每个数据的相关性都是挺强的</h3><br>
+    </div>
+
+    <div>
     <h3>(5)男女、是否吸烟以及总账单生成的条形图，看看他们之间的关系</h3>
     
     <div id="chart5" class="chart5"></div>
@@ -29,6 +35,10 @@
 <script>
     f = {{ graphJSON5 | safe }};
     Plotly.newPlot('chart5', f, {});
+</script>
+<script>
+    a = {{ graphJSON2 | safe }};
+    Plotly.newPlot('chart2', a, {});
 </script>
 
 </html>

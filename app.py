@@ -98,11 +98,25 @@ def cb():
 
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html',graphJSON5=gm4())
+	return render_template('chartsajax.html',graphJSON5=gm4(),graphJSON2=gm1())
 
 @app.route('/chart1')
 def index1():
-	return render_template('chart1.html',graphJSON9=gm8())
+	return render_template('chart1.html',graphJSON9=gm8(),graphJSON4=gm3())
+
+def gm1():
+	df = pd.DataFrame(px.data.tips())
+	fig = px.scatter_matrix(df)
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
+
+def gm3():
+	df = pd.DataFrame(px.data.gapminder())
+	fig =px.scatter_geo(df, locations="iso_alpha", color="continent", hover_name="country", size="pop",
+               animation_frame="year", projection="natural earth")
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
+
 
 def gm4():
 	df = pd.DataFrame(px.data.tips())
