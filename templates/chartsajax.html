@@ -6,7 +6,24 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
     
-    
+    <script>
+        function cb(selection) {
+            $.getJSON({
+                url: "/callback", data: { 'data': selection }, success: function (result) {
+                    Plotly.newPlot('chart', result, {});;
+                }
+            });
+        }
+    </script>
+<script>
+        function cb1(selection) {
+            $.getJSON({
+                url: "/callback1", data: { 'data': selection }, success: function (result) {
+                    Plotly.newPlot('chart1', result, {});;
+                }
+            });
+        }
+    </script>
 
 </head>
 
@@ -15,6 +32,25 @@
     <h2 align='center'>餐馆数据订单包含字段：total_bill(总账单)、tip(小费)、sex(性别[男(Male)、女(Female)])、smoker(是否吸烟[是(Yes)、否(No)])、day(星期几)、time(早中餐哪一餐)、size(用餐人数)</h2>
     <h3 align='center'>数据集中星期是"Thur", "Fri", "Sat", "Sun"，time是"Lunch", "Dinner"</h3>
     <br><br>
+
+
+    <div>
+    <h3>(3)查看男性和女性的有关总账单和小费的关系</h3>
+    <h3>输入男性还是女性，男（Male）女（Female）,默认男性</h3>
+    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
+    <div id="chart" class="chart"></div>
+    <h3>可以看到男性总账单集中在10-20之间，小费集中在2-6之间，并且有一个大致趋势是男性总账单越高的小费可能给得越高</h3>
+    <h3>而女性总账单集中也在10-20之间，但小费集中在2-4之间</h3><br>
+    </div>
+
+    <div>
+    <h3>(4)通过多幅散点，查看总账单、小费、是否吸烟以及星期和时间的关系</h3>
+    <h3>默认选择是女性,男（Male）女（Female）</h3>
+     <input type="text" id="fname" name="fname" onchange="cb1(this.value)">
+    <div id="chart1" class="chart1"></div>
+    <h3>可以看到男性和女性在周四的晚餐(Dinner)和周六周日的中餐(Lunch)数据都甚少，几乎为空</h3>
+    <h3>而在已有的数据可以看到无论是吸烟者还是不吸烟者大部分人给小费的数目都会随着总账单的增长而增长。而有趣的是不论男女的吸烟者在周日晚餐时的小费数目是随总账单数目增加而减少的</h3><br>
+    </div>
 
     <div>
     <h3>(1)矩阵散点图，查看指标相关性</h3>

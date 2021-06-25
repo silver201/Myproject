@@ -110,7 +110,7 @@ def cb3():
 
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html',graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
+	return render_template('chartsajax.html', graphJSON=gm(),graphJSON1=am(),graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
 		)
 
 @app.route('/chart1')
@@ -119,6 +119,23 @@ def index1():
 		graphJSON13=gm12(),graphJSON14=gm13(),graphJSON15=gm14(),graphJSON16=gm15(),graphJSON17=gm16())
 
 
+# def gm(country='United Kingdom'):
+def gm(sex='Male'):
+	df = pd.DataFrame(px.data.tips())
+	
+	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", color="size", facet_col="sex",
+           color_continuous_scale=px.colors.sequential.Viridis, 
+           render_mode="webgl")
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
+
+def am(sex='Female'):
+	df = pd.DataFrame(px.data.tips())
+	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", facet_row="time", facet_col="day",
+           color="smoker", trendline="ols",category_orders={"day": ["Thur", 
+           "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
 
 def gm1():
