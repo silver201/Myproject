@@ -96,13 +96,65 @@ def cb():
 	return gm(request.args.get('data'))
 
 
+@app.route('/callback1', methods=['POST', 'GET'])
+def cb1():
+	return am(request.args.get('data'))
+
+@app.route('/callback2', methods=['POST', 'GET'])
+def cb2():
+	return gm10(request.args.get('data'))
+   
+@app.route('/callback3', methods=['POST', 'GET'])
+def cb3():
+	return gm11(request.args.get('data'))
+
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html',graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2())
+	return render_template('chartsajax.html',graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON=gm(),graphJSON1=am(),)
 
 @app.route('/chart1')
 def index1():
-	return render_template('chart1.html',graphJSON9=gm8(),graphJSON4=gm3(),graphJSON10=gm9())
+	return render_template('chart1.html',graphJSON9=gm8(),graphJSON4=gm3(),graphJSON10=gm9(),graphJSON11=gm10(),graphJSON12=gm11(),)
+
+
+# def gm(country='United Kingdom'):
+def gm(sex='Male'):
+	# df = pd.DataFrame(px.data.gapminder())
+	# df = pd.DataFrame(px.data.iris())
+	df = pd.DataFrame(px.data.tips())
+	# fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
+	# fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
+	# fig1 = px.line(df[df['smoker']==smoker], x="sex", y="size")
+	# fig = px.scatter(df[df['smoker']==smoker], x="total_bill", y="sex")
+	# a=[]
+	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", color="size", facet_col="sex",
+           color_continuous_scale=px.colors.sequential.Viridis, 
+           render_mode="webgl")
+	# fig1=px.line(df, x="sex", y="size")
+	# a.append(fig)
+	# a.append(fig1)
+	# graphJSON=[]
+	# graphJSON=graphJSON.push(json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder))
+	# graphJSON=graphJSON.push(json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder))
+	
+	# graphJSON1 = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	# a=[]
+	# a.append(graphJSON)
+	# a.append(graphJSON1)
+	# return a
+	return graphJSON
+
+def am(sex='Male'):
+	df = pd.DataFrame(px.data.tips())
+	# fig = px.line(df[df['smoker']==smoker], x="sex", y="size")
+	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", facet_row="time", facet_col="day",
+           color="smoker", trendline="ols",category_orders={"day": ["Thur", 
+           "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
+	# fig=px.scatter(df, x="total_bill", y="tip", facet_row="time", facet_col="day",  color="smoker", trendline="ols",category_orders={"day": ["Thur", 
+ #           "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
 def gm1():
 	df = pd.DataFrame(px.data.tips())
@@ -142,6 +194,18 @@ def gm9():
 	df = pd.DataFrame(px.data.gapminder())
 	fig =px.line_geo(df.query("year==2007"), locations="iso_alpha", 
             color="continent", projection="orthographic")
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
+
+def gm10(country='United Kingdom'):
+	df = pd.DataFrame(px.data.gapminder())
+	fig =fig = px.line(df[df['country']==country], x="year", y="lifeExp")
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
+
+def gm11(country='United Kingdom'):
+	df = pd.DataFrame(px.data.gapminder())
+	fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
