@@ -24,26 +24,11 @@
     <h3 align='center'>数据集中星期是"Thur", "Fri", "Sat", "Sun"，time是"Lunch", "Dinner"</h3>
     <br><br>
 
-
-    
-
-    <div>
-    <h3>(3)查看男性和女性的有关总账单和小费的关系</h3>
-    <h3>输入男性还是女性，男（Male）女（Female）,默认男性</h3>
-    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
-    <div id="chart" class="chart"></div>
-    <h3>可以看到男性总账单集中在10-20之间，小费集中在2-6之间，并且有一个大致趋势是男性总账单越高的小费可能给得越高</h3>
-    <h3>而女性总账单集中也在10-20之间，但小费集中在2-4之间</h3><br>
-    </div>
-
     
 
 </body>
 
-<script>
-    d = {{ graphJSON | safe }};
-    Plotly.newPlot('chart', d, {});
-</script>
+
 <script>
    
 </script>
