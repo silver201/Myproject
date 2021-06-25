@@ -98,28 +98,24 @@ def cb():
 
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html', graphJSON=gm(),graphJSON1=am())
+	return render_template('chartsajax.html',graphJSON5=gm4())
 
-def gm(sex='Male'):
-	
+@app.route('/chart1')
+def index1():
+	return render_template('chart1.html',graphJSON9=gm8())
+
+def gm4():
 	df = pd.DataFrame(px.data.tips())
-	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", color="size", facet_col="sex",
-           color_continuous_scale=px.colors.sequential.Viridis, 
-           render_mode="webgl")
+	fig = px.bar(df, x="sex", y="total_bill", color="smoker", barmode="group")
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
-def am(sex='Male'):
-	df = pd.DataFrame(px.data.tips())
-	
-	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", facet_row="time", facet_col="day",
-           color="smoker", trendline="ols",category_orders={"day": ["Thur", 
-           "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
-	
+def gm8():
+	df = pd.DataFrame(px.data.gapminder())
+	fig =px.choropleth(df, locations='iso_alpha', color='lifeExp', hover_name='country', animation_frame='year',
+              color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
-
-
 
 
 if __name__ == '__main__':

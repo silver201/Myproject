@@ -6,15 +6,7 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
     
-    <script>
-        function cb(selection) {
-            $.getJSON({
-                url: "/callback", data: { 'data': selection }, success: function (result) {
-                    Plotly.newPlot('chart', result, {});;
-                }
-            });
-        }
-    </script>
+    
 
 </head>
 
@@ -25,20 +17,18 @@
     <br><br>
 
     <div>
-    <h3>(3)查看男性和女性的有关总账单和小费的关系</h3>
-    <h3>输入男性还是女性，男（Male）女（Female）,默认男性</h3>
-    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
-    <div id="chart" class="chart"></div>
-    <h3>可以看到男性总账单集中在10-20之间，小费集中在2-6之间，并且有一个大致趋势是男性总账单越高的小费可能给得越高</h3>
-    <h3>而女性总账单集中也在10-20之间，但小费集中在2-4之间</h3><br>
+    <h3>(5)男女、是否吸烟以及总账单生成的条形图，看看他们之间的关系</h3>
+    
+    <div id="chart5" class="chart5"></div>
+    <h3>通过条形图可以得到，总体上男性总账单数比女性要多，并且不论男女不吸烟者的账单数都比吸烟者高，而且男性吸烟者要比女性多。</h3><br>
     </div>
 
 </body>
 
 
 <script>
-    d = {{ graphJSON | safe }};
-    Plotly.newPlot('chart', d, {});
+    f = {{ graphJSON5 | safe }};
+    Plotly.newPlot('chart5', f, {});
 </script>
 
 </html>
