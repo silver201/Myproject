@@ -26,6 +26,12 @@
     <div id="chart4" class="chart4"></div>
     <h3>这幅图也是如上面一样，当你拉动时间条时，你可以看到各个洲的小圆点慢慢变多，慢慢变大，说明人口在慢慢增长，科技的发展带来了更多的生机和活力。当你拉动时间条时仿佛看到了世界的变迁，非常有趣</h3><br>
     </div>
+
+    <div>
+    <h3>(11)地理坐标线条图，设定展示立体地图</h3>
+    <div id="chart10" class="chart10"></div>
+    <h3>展示的是每个洲上面的每个国家的点连成的线，当鼠标移动到地图上的对应点时就会展示该洲名和国家名</h3><br>
+    </div>
     
 </body>
 
@@ -37,5 +43,9 @@
 <script>
     e = {{ graphJSON4 | safe }};
     Plotly.newPlot('chart4', e, {});
+</script>
+<script>
+    k = {{ graphJSON10 | safe }};
+    Plotly.newPlot('chart10', k, {});
 </script>
 </html>

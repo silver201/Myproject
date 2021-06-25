@@ -98,15 +98,22 @@ def cb():
 
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html',graphJSON5=gm4(),graphJSON2=gm1())
+	return render_template('chartsajax.html',graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2())
 
 @app.route('/chart1')
 def index1():
-	return render_template('chart1.html',graphJSON9=gm8(),graphJSON4=gm3())
+	return render_template('chart1.html',graphJSON9=gm8(),graphJSON4=gm3(),graphJSON10=gm9())
 
 def gm1():
 	df = pd.DataFrame(px.data.tips())
 	fig = px.scatter_matrix(df)
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
+
+def gm2():
+	df = pd.DataFrame(px.data.tips())
+	fig = px.parallel_categories(df, color="size", color_continuous_scale=px.
+            colors.sequential.Inferno)
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
@@ -131,6 +138,12 @@ def gm8():
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
+def gm9():
+	df = pd.DataFrame(px.data.gapminder())
+	fig =px.line_geo(df.query("year==2007"), locations="iso_alpha", 
+            color="continent", projection="orthographic")
+	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+	return graphJSON
 
 if __name__ == '__main__':
   app.run(debug= True,port=5000,threaded=True)
