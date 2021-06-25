@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    
+</head>
+
+<body style="font-family:arial, sans-serif">
+  
+    
+    <h1 align='center'>可视化神器Plotly_Express中内置数据集：不同国家历年GDP收入与人均寿命，简易数据分析</h1>
+    <h2 align='center'>不同国家历年GDP收入与人均寿命包含字段：country(国家)、continent(洲)、year(年份)、lifeExp(平均寿命)、pop(人口数量)、gdpPrecap(GDP)、iso_alpha(国家简称)、iso_num(国家编号)</h2>
+    <div>
+    <h3>(9)动画地图:关于这么多年各个国家和平均寿命</h3>
+    <div id="chart9" class="chart9"></div>
+    <h3>在地图上可以看到各个国家的位置，并且鼠标移动到具体位置可以看到该国家简称和平均寿命，下面的一行年份可以随机选择，根据选择会生成不同的地图动画，这样我们就可以看到大致的各个国家年份的平均寿命情况。地图旋转方便看到每个国家</h3>
+    <h3>这幅图有趣的点在于当你拉动时间条是，你可以通过颜色的变化看到每个国家的平均寿命的变换，很显眼的是雄鸡中国，从1952的深紫色平均寿命40慢慢慢慢颜色变浅到07年的橙色，中国在慢慢崛起，人民生活也越来越好，平均寿命也越来越长。</h3><br>
+    </div>
+
+
+    
+</body>
+
+
+<script>
+    j = {{ graphJSON9 | safe }};
+    Plotly.newPlot('chart9', j, {});
+</script>
+</html>
