@@ -110,7 +110,7 @@ def cb3():
 
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html', graphJSON=gm(),graphJSON1=am(),
+	return render_template('chartsajax.html', graphJSON=gm(),
 		graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
 		)
 
@@ -130,13 +130,6 @@ def gm(sex='Male'):
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
-def am(sex='Female'):
-	df = pd.DataFrame(px.data.tips())
-	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", facet_row="time", facet_col="day",
-           color="smoker", trendline="ols",category_orders={"day": ["Thur", 
-           "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
 
 
 def gm1():
