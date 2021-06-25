@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request
 import pandas as pd
 import json
@@ -110,210 +109,28 @@ def cb3():
 
 @app.route('/chart')
 def index():
-	return render_template('chartsajax.html', graphJSON=gm(),graphJSON1=am(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON4=gm3(),
-		graphJSON5=gm4(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
-		graphJSON9=gm8(),graphJSON10=gm9(),graphJSON11=gm10(),graphJSON12=gm11(),
-		graphJSON13=gm12(),graphJSON14=gm13(),graphJSON15=gm14(),graphJSON16=gm15(),graphJSON17=gm16())
+	return render_template('chartsajax.html', graphJSON=gm(),graphJSON1=am())
 
-# def gm(country='United Kingdom'):
 def gm(sex='Male'):
-	# df = pd.DataFrame(px.data.gapminder())
-	# df = pd.DataFrame(px.data.iris())
+	
 	df = pd.DataFrame(px.data.tips())
-	# fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
-	# fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
-	# fig1 = px.line(df[df['smoker']==smoker], x="sex", y="size")
-	# fig = px.scatter(df[df['smoker']==smoker], x="total_bill", y="sex")
-	# a=[]
 	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", color="size", facet_col="sex",
            color_continuous_scale=px.colors.sequential.Viridis, 
            render_mode="webgl")
-	# fig1=px.line(df, x="sex", y="size")
-	# a.append(fig)
-	# a.append(fig1)
-	# graphJSON=[]
-	# graphJSON=graphJSON.push(json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder))
-	# graphJSON=graphJSON.push(json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder))
-	
-	# graphJSON1 = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	# a=[]
-	# a.append(graphJSON)
-	# a.append(graphJSON1)
-	# return a
 	return graphJSON
 
 def am(sex='Male'):
 	df = pd.DataFrame(px.data.tips())
-	# fig = px.line(df[df['smoker']==smoker], x="sex", y="size")
+	
 	fig=px.scatter(df[df['sex']==sex], x="total_bill", y="tip", facet_row="time", facet_col="day",
            color="smoker", trendline="ols",category_orders={"day": ["Thur", 
            "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
-	# fig=px.scatter(df, x="total_bill", y="tip", facet_row="time", facet_col="day",  color="smoker", trendline="ols",category_orders={"day": ["Thur", 
- #           "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
+	
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
-def gm1():
-	df = pd.DataFrame(px.data.tips())
-	fig = px.scatter_matrix(df)
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
 
-def gm2():
-	df = pd.DataFrame(px.data.tips())
-	fig = px.parallel_categories(df, color="size", color_continuous_scale=px.
-            colors.sequential.Inferno)
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm3():
-	df = pd.DataFrame(px.data.gapminder())
-	fig =px.scatter_geo(df, locations="iso_alpha", color="continent", hover_name="country", size="pop",
-               animation_frame="year", projection="natural earth")
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm4():
-	df = pd.DataFrame(px.data.tips())
-	fig = px.bar(df, x="sex", y="total_bill", color="smoker", barmode="group")
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm5():
-	df = pd.DataFrame(px.data.tips())
-	fig = px.bar(df, x="sex", y="total_bill", color="smoker", barmode="group", 
-       facet_row="time", facet_col="day", category_orders={"day": ["Thur", 
-       "Fri", "Sat", "Sun"], "time": ["Lunch", "Dinner"]})
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm6():
-	df = pd.DataFrame(px.data.tips())
-	fig = px.box(df, x="day", y="total_bill", color="smoker", notched=True)
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm7():
-	df = pd.DataFrame(px.data.tips())
-	fig =px.violin(df, y="tip", x="smoker", color="sex", box=True, points="all", 
-          hover_data=df.columns)
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm8():
-	df = pd.DataFrame(px.data.gapminder())
-	fig =px.choropleth(df, locations='iso_alpha', color='lifeExp', hover_name='country', animation_frame='year',
-              color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm9():
-	df = pd.DataFrame(px.data.gapminder())
-	fig =px.line_geo(df.query("year==2007"), locations="iso_alpha", 
-            color="continent", projection="orthographic")
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm10(country='United Kingdom'):
-	df = pd.DataFrame(px.data.gapminder())
-	fig =fig = px.line(df[df['country']==country], x="year", y="lifeExp")
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm11(country='United Kingdom'):
-	df = pd.DataFrame(px.data.gapminder())
-	fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm12():
-	df = pd.DataFrame(px.data.gapminder())
-	fig=px.scatter(df.query("year==2007"), x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=60)
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm13():
-	df = pd.DataFrame(px.data.gapminder())
-	fig=px.scatter(df.query("year==2007"),x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=60, hover_name='country', facet_col='continent', log_x=True)
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm14():
-	df = pd.DataFrame(px.data.gapminder())
-	fig=px.scatter(df, x='gdpPercap', y='lifeExp', size='pop', color='continent', hover_name='country', 
-           animation_frame='year', animation_group='country', log_x=True, range_x=[100,100000], range_y=[25, 90],
-           labels=dict(pop='Population', gdpPercap='GDP per Capita', lifeExp='Life Expectancy'))
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm15():
-	df = pd.DataFrame(px.data.gapminder())
-	fig=px.line(df, x="year", y="lifeExp", color="continent", 
-        line_group="country", hover_name="country",
-        line_shape="spline", render_mode="svg")
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-def gm16():
-	df = pd.DataFrame(px.data.gapminder())
-	fig=px.area(df, x="year", y="pop", color="continent", 
-        line_group="country")
-	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-@app.route('/senti')
-def main():
-	text = ""
-	values = {"positive": 0, "negative": 0, "neutral": 0}
-
-	with open('ask_politics.csv', 'rt') as csvfile:
-		reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
-		for idx, row in enumerate(reader):
-			if idx > 0 and idx % 2000 == 0:
-				break
-			if  'text' in row:
-				nolinkstext = re.sub(r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''', '', row['text'], flags=re.MULTILINE)
-				text = nolinkstext
-
-			blob = TextBlob(text)
-			for sentence in blob.sentences:
-				sentiment_value = sentence.sentiment.polarity
-				if sentiment_value >= -0.1 and sentiment_value <= 0.1:
-					values['neutral'] += 1
-				elif sentiment_value < 0:
-					values['negative'] += 1
-				elif sentiment_value > 0:
-					values['positive'] += 1
-
-	values = sorted(values.items(), key=operator.itemgetter(1))
-	top_ten = list(reversed(values))
-	if len(top_ten) >= 11:
-		top_ten = top_ten[1:11]
-	else :
-		top_ten = top_ten[0:len(top_ten)]
-
-	top_ten_list_vals = []
-	top_ten_list_labels = []
-	for language in top_ten:
-		top_ten_list_vals.append(language[1])
-		top_ten_list_labels.append(language[0])
-
-	graph_values = [{
-					'labels': top_ten_list_labels,
-					'values': top_ten_list_vals,
-					'type': 'pie',
-					'insidetextfont': {'color': '#FFFFFF',
-										'size': '14',
-										},
-					'textfont': {'color': '#FFFFFF',
-										'size': '14',
-								},
-					}]
-
-	layout = {'title': '<b>意见挖掘</b>'}
-
-	return render_template('index.html', graph_values=graph_values, layout=layout)
 
 
 if __name__ == '__main__':
