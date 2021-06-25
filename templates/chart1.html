@@ -63,9 +63,45 @@
     <div id="chart12" class="chart12"></div>
     <h3>在这里输入不同的国家你可以看到从1952年到2007年各国GPD的一个演变，大体上每个国家都是呈增长状态的</h3><br>
     </div>
+
+
+    <div>
+    <h3>(14)气泡图：这里的每一点都是一个国家</h3>
+   
+    <div id="chart13" class="chart13"></div>
+    <h3>这是2007这一年的数据，每一点都是一个国家，气泡的大小由国家人口数量决定，人口越多气泡越大。从图可以看到Africa（非洲）的平均寿命是低于其他几个洲的；(Asia)亚洲人口是最多的；GDP最高的出现在Europe(欧洲);普遍的欧洲国家平均寿命和GDP都高</h3><br>
+    </div>
+
+    <div>
+    <h3>(15)通过 facet_col =”continent“ 对上面的气泡图进行划分，x轴使用 对数（log_x）以便在我们在图表中看的更清晰</h3>
+   
+    <div id="chart14" class="chart14"></div>
+    <h3>这是对上面的14个图的各州的具体分解，得到的结果也与上面是一样的</h3><br>
+    </div>
+
+    <div>
+    <h3>(16)上面两个图都是静态的只有2007年一年的数据，接下来添加时间条，动态展示各大洲各个国家平均寿命和GDP的演变</h3>
+    
+    <div id="chart15" class="chart15"></div>
+    <h3>通过动态的动画可以知道，在1952年到2007年这些年间,所有的总体情况平均寿命和GDP都是在增长的，也可以很明显的通过动画看到亚洲的人口和GDP增长的速度之快</h3>
+    <br>
+    </div>
+
+    <div>
+    <h3>(17)各州平均寿命和时间的线条图，</h3>
+    
+    <div id="chart16" class="chart16"></div>
+    <h3>通过线条图可以看到所有洲的平均寿命大体上都在增长，而非洲和亚洲有国家的线是突然向下在恢复增长的，都是因为落后要挨打，熬过了苦难的日子，大家生活水平提高平均寿命也就提高了</h3><br>
+    </div>
+
+    <div>
+    <h3>(18)各大洲人口数量和年份的堆积区域图</h3>
+    
+    <div id="chart17" class="chart17"></div>
+    <h3>通过堆积图可以看到各大洲各个国家人口总数总体是不停增加的，由其实亚洲增加的数目最多</h3><br>
+    </div>
     
 </body>
-
 
 <script>
     j = {{ graphJSON9 | safe }};
@@ -86,5 +122,25 @@
 <script>
     m = {{ graphJSON12 | safe }};
     Plotly.newPlot('chart12', m, {});
+</script>
+<script>
+    n = {{ graphJSON13 | safe }};
+    Plotly.newPlot('chart13', n, {});
+</script>
+<script>
+    o = {{ graphJSON14 | safe }};
+    Plotly.newPlot('chart14', o, {});
+</script>
+<script>
+    p = {{ graphJSON15 | safe }};
+    Plotly.newPlot('chart15', p, {});
+</script>
+<script>
+    q = {{ graphJSON16 | safe }};
+    Plotly.newPlot('chart16', q, {});
+</script>
+<script>
+    r = {{ graphJSON17 | safe }};
+    Plotly.newPlot('chart17', r, {});
 </script>
 </html>
