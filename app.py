@@ -95,17 +95,6 @@ def cv(person=person):
 def cb():
 	return gm(request.args.get('data'))
 
-@app.route('/callback1', methods=['POST', 'GET'])
-def cb1():
-	return am(request.args.get('data'))
-
-@app.route('/callback2', methods=['POST', 'GET'])
-def cb2():
-	return gm10(request.args.get('data'))
-   
-@app.route('/callback3', methods=['POST', 'GET'])
-def cb3():
-	return gm11(request.args.get('data'))
 
 @app.route('/chart')
 def index():
