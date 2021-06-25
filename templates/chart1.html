@@ -8,7 +8,7 @@
     <script>
         function cb2(selection) {
             $.getJSON({
-                url: "/callback2", data: { 'data': selection }, success: function (result) {
+                url: "/callback", data: { 'data': selection }, success: function (result) {
                     Plotly.newPlot('chart11', result, {});;
                 }
             });

@@ -18,7 +18,7 @@ person = {
     'address' : '湖北师范大学',
     'job': 'Web developer',
     'tel': '0678282923',
-    'email': 'sasa07072021@outlook.com',
+    'email': 'sasa0707@outlook.com',
     # 'description' : 'Suite à une expérience internationale en développement web et dans le domaine des arts, l’impact de l’intelligence artificielle dans nos vies me surprend de jour en jour. \n Aujourd’hui, je souhaite changer de cap et comprendre les secrets que recèlent nos données. J’aimerais mettre à profit ces découvertes au service des entreprises/associations à dimension sociale.',
     'description' : '我待人真诚，工作认真负责；积极主动，能吃苦耐劳，勇于承受压力;有很强团队协作精神，具有较强的适应能力;纪律性强; 意志坚强，具有较强的无私奉献精神。对待工作认真负责，善于沟通；活泼开朗、乐观上进、有爱心；上进心强、勤于学习能不断提高自身的能力与综合素质。在未来的工作中，我将以充沛的精力，刻苦钻研的精神来努力工作，稳定地提高自己的工作能力，与公司同步发展',
     # 'social_media' : [
@@ -73,17 +73,15 @@ person = {
             'timeframe' : '2018 - 2022'
         }
     ],
-    'programming_languages' : {
-        'HMTL' : ['fa-html5', '100'], 
-        'CSS' : ['fa-css3-alt', '100'], 
-        'JS' : ['fa-js-square', '90'],
-        'Python': ['fa-python', '70'],
-        'MySQL' : ['fa-database', '60'],
-        'NodeJS' : ['fa-node-js', '50']
-    },
+    'programming_languages' : ['HMTL' , 
+        'CSS' , 
+        'JS' ,
+        'Python',
+        'MySQL',
+        'NodeJS' ],
     # 'languages' : {'French' : 'Native', 'English' : 'Professional', 'Spanish' : 'Professional', 'Italian' : 'Limited Working Proficiency'},
     'languages' : {'French' : 'Native', 'English' : 'Professional', 'Spanish' : 'Professional', 'Italian' : 'Limited Working Proficiency'},
-    'interests' : ['运动', '吃东西', 'Languages']
+    'interests' : ['运动', '吃东西']
 }
 
 @app.route('/')
@@ -96,11 +94,7 @@ def cb():
 	return gm(request.args.get('data'))
 
 
-@app.route('/callback1', methods=['POST', 'GET'])
-def cb1():
-	return am(request.args.get('data'))
-
-@app.route('/callback2', methods=['POST', 'GET'])
+@app.route('/callback', methods=['POST', 'GET'])
 def cb2():
 	return gm10(request.args.get('data'))
    
@@ -111,8 +105,7 @@ def cb3():
 @app.route('/chart')
 def index():
 	return render_template('chartsajax.html', graphJSON=gm(),
-		graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7(),
-		)
+		graphJSON5=gm4(),graphJSON2=gm1(),graphJSON3=gm2(),graphJSON6=gm5(),graphJSON7=gm6(),graphJSON8=gm7())
 
 @app.route('/chart1')
 def index1():
@@ -158,6 +151,7 @@ def gm4():
 	fig = px.bar(df, x="sex", y="total_bill", color="smoker", barmode="group")
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
+
 def gm5():
 	df = pd.DataFrame(px.data.tips())
 	fig = px.bar(df, x="sex", y="total_bill", color="smoker", barmode="group", 
