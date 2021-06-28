@@ -126,9 +126,6 @@ def index1():
 		graphJSON13=gm12(),graphJSON14=gm13(),graphJSON15=gm14(),graphJSON16=gm15(),graphJSON17=gm16(),
         graphJSON18=c1())
 
-@app.route('/chart2')
-def index2():
-    return render_template('chart2.html',graphJSON19=c2())
 
 
 def c1():
@@ -144,16 +141,6 @@ def c1():
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
     
-
-def c2():
-    df=pd.DataFrame(px.data.stocks())
-    fig=px.line(df, x='date', y="FB") 
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    return graphJSON
-    
-
-
-
 
 
 # def gm(country='United Kingdom'):
