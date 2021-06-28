@@ -5,17 +5,6 @@ import plotly
 import plotly.express as px
 
 
-#导入工具包
-import datetime
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-from pyecharts.charts import *
-# import pyecharts.options as opts
-# from pyecharts.faker import Faker
-# from pyecharts.commons.utils import JsCode
-
 import csv, re, operator
 # from textblob import TextBlob
 
