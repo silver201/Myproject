@@ -4,10 +4,23 @@ import json
 import plotly
 import plotly.express as px
 
+
+#导入工具包
+import datetime
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from pyecharts.charts import *
+# import pyecharts.options as opts
+# from pyecharts.faker import Faker
+# from pyecharts.commons.utils import JsCode
+
 import csv, re, operator
 # from textblob import TextBlob
 
 app = Flask(__name__)
+
 
 person = {
     'first_name': '黄',
@@ -110,7 +123,37 @@ def index():
 @app.route('/chart1')
 def index1():
 	return render_template('chart1.html',graphJSON9=gm8(),graphJSON4=gm3(),graphJSON10=gm9(),graphJSON11=gm10(),graphJSON12=gm11(),
-		graphJSON13=gm12(),graphJSON14=gm13(),graphJSON15=gm14(),graphJSON16=gm15(),graphJSON17=gm16())
+		graphJSON13=gm12(),graphJSON14=gm13(),graphJSON15=gm14(),graphJSON16=gm15(),graphJSON17=gm16(),
+        graphJSON18=c1())
+
+@app.route('/chart2')
+def index2():
+    return render_template('chart2.html',graphJSON19=c2())
+
+
+def c1():
+    df=pd.DataFrame(px.data.gapminder())
+    gapminder_2007 = df[df["year"] == 2007]#2007年数据
+
+    fig=px.sunburst(gapminder_2007,   # 绘图数据
+            path=['continent', 'country'],  # 指定路径：从洲到国家
+            values='pop', # 数据大小：人口数
+            color='lifeExp',  # 颜色
+            hover_data=['iso_alpha'] # 显示数据
+           )
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return graphJSON
+    
+
+def c2():
+    df=pd.DataFrame(px.data.stocks())
+    fig=px.line(df, x='date', y="FB") 
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return graphJSON
+    
+
+
+
 
 
 # def gm(country='United Kingdom'):
@@ -132,6 +175,7 @@ def gm1():
 	return graphJSON
 
 def gm2():
+
 	df = pd.DataFrame(px.data.tips())
 	fig = px.parallel_categories(df, color="size", color_continuous_scale=px.
             colors.sequential.Inferno)

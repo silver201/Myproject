@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    
+</head>
+
+<body style="font-family:arial, sans-serif">
+  
+    
+    <h1 align='center'>可视化神器Plotly_Express中内置数据集：不同国家历年GDP收入与人均寿命，简易数据分析</h1>
+    <h2 align='center'>不同国家历年GDP收入与人均寿命包含字段：country(国家)、continent(洲)、year(年份)、lifeExp(平均寿命)、pop(人口数量)、gdpPrecap(GDP)、iso_alpha(国家简称)、iso_num(国家编号)</h2>
+
+    <div>
+   <div id="c1" class="c1"></div>
+    </div>
+    <div>
+   <div id="c2" class="c2"></div>
+    </div>
+    
+</body>
+
+<script>
+    c1 = {{ graphJSON18 | safe }};
+    Plotly.newPlot('c1', c1, {});
+</script>
+<script>
+    c2 = {{ graphJSON19 | safe }};
+    Plotly.newPlot('c2', c2, {});
+</script>
+
+</html>

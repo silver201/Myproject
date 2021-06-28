@@ -58,6 +58,14 @@
     </div>
 
     <div>
+    <h3>(12)各个国家的平均寿命旭日图</h3>
+    <div id="c1" class="c1"></div>
+    <h3>旭日图旭日图（Sunburst Chart）是一种现代饼图，它超越传统的饼图和环图，能表达清晰的层级和归属关系，以父子层次结构来显示数据构成情况。旭日图中，离远点越近表示级别越高，相邻两层中，是内层包含外层的关系。</h3>
+    <h3>在这一幅旭日图中首先内圈是各大洲，基于洲属第二层是各个国家，人口数量的多少决定扇形的宽度，平均寿命的长度长短决定着扇形颜色的深浅，从图中我们可以看到亚洲的人口最多，中国的人口位于世界之最，非洲大部分国家的平均寿命比较短。</h3>
+    <br>
+    </div>
+
+    <div>
     <h3>(12)各个国家的GDP演变折线图，默认是United Kingdom</h3>
     <input type="text" id="fname" name="fname" onchange="cb3(this.value)">
     <div id="chart12" class="chart12"></div>
@@ -98,7 +106,7 @@
     <h3>(17)各大洲人口数量和年份的堆积区域图</h3>
     
     <div id="chart17" class="chart17"></div>
-    <h3>通过堆积图可以看到各大洲各个国家人口总数总体是不停增加的，由其实亚洲增加的数目最多</h3><br>
+    <h3>通过堆积图可以看到各大洲各个国家人口总数总体是不停增加的，尤其是亚洲增加的数目最多</h3><br>
     </div>
     
 </body>
@@ -142,5 +150,9 @@
 <script>
     r = {{ graphJSON17 | safe }};
     Plotly.newPlot('chart17', r, {});
+</script>
+<script>
+    c1 = {{ graphJSON18 | safe }};
+    Plotly.newPlot('c1', c1, {});
 </script>
 </html>
